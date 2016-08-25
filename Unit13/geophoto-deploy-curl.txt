@@ -1,0 +1,3 @@
+
+
+curl --anyauth --user admin:admin -X PUT -d@"c:/mls-developer-node/Unit13/geophoto-db-config.json" -i -H "Content-type: application/json" "http://localhost:8002/manage/v2/databases/geophoto-content/properties"

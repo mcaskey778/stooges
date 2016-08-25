@@ -1,0 +1,1 @@
+curl --anyauth --user admin:admin -X POST -d@"../mls-developer-node/Unit03/config/xml-rest-instance.xml" -i -H "Content-type: application/xml" http://localhost:8002/v1/rest-apis

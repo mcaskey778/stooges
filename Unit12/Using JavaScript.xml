@@ -1,0 +1,51 @@
+<export><workspace name="Using JavaScript"><query name="Example 1" focus="true" active="true" content-source="as:11726756248305811694:" mode="javascript">// read a specific document
+
+var myDoc = cts.doc("/character/leiaorgana.json");
+
+myDoc;</query><query name="Example 2" focus="false" active="true" content-source="as:11726756248305811694:" mode="javascript">// return the "name" JSON property from a document
+
+var myDoc = cts.doc("/character/leiaorgana.json");
+var myName = myDoc.toObject().name;
+
+myName;
+</query><query name="Example 3" focus="false" active="true" content-source="as:11726756248305811694:" mode="javascript">// loop over all the documents in a collection and output the names from each document
+//fn.collection() returns an iterator (An Iterator is an object that knows
+//how to access items from a collection one at a time,
+//while keeping track of its current position within that sequence)
+
+var names = [];
+
+for(var doc of fn.collection('character')) {
+  var name = doc.toObject().name;
+  names.push(name);
+}
+names;</query><query name="Example 4" focus="false" active="true" content-source="as:11726756248305811694:" mode="javascript">// search the database and return matching documents where:
+// "alliance" property contains the word "rebel"
+// AND the document contains either the word "skywalker" or "leia"
+// AND the document does not contain the phrase "Darth Vader"
+
+var matches = 
+    cts.search(cts.andQuery([cts.jsonPropertyWordQuery("alliance", "rebel"), 
+                             cts.orQuery([cts.wordQuery("skywalker"), cts.wordQuery("leia")]),
+                             cts.notQuery(cts.wordQuery("Darth Vader"))
+                            ]));
+
+matches;
+
+</query><query name="Example 5" focus="false" active="true" content-source="as:11726756248305811694:" mode="javascript">// write a search query that will find documents that:
+// contain the word "leia" and "skywalker" where those words occur within 5 words of each other
+</query><query name="Example 6" focus="false" active="true" content-source="as:11726756248305811694:" mode="javascript">// write a search query that will find documents that:
+// contain the word "leia" and "skywalker" where those words occur within 5 words of each other
+
+var matches = cts.search(cts.nearQuery([cts.wordQuery("leia"), cts.wordQuery("skywalker")], 5));
+
+matches;</query><query name="HTTP Function Example" focus="false" active="true" content-source="692895436060370492:0:Apps" mode="javascript">// This example shows how to use the HTTP functions
+// provided by MarkLogic to work with other web services.
+
+var input = xdmp.urlEncode("San Francisco California");
+
+var request = "http://maps.googleapis.com/maps/api/geocode/json?address=" + input;
+    
+var response = xdmp.httpGet(request);
+
+response;</query></workspace></export>

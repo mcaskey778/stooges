@@ -1,0 +1,84 @@
+<export><workspace name="JavaScript Instructor Demo"><query name="Ex1 - Read doc" focus="true" active="true" mode="javascript">//var darthvader = cts.doc('/character/darthvader.json');
+//darthvader instanceof ValueIterator; //false
+//darthvader instanceof Node; //true
+//darthvader.toObject() instanceof Object; //true
+//darthvader.toObject().name //Darth Vader
+
+//var darthvader = fn.doc('/character/darthvader.json');
+//darthvader instanceof ValueIterator; //true
+//darthvader instanceof Node; //false
+//darthvader instanceof Object; //true
+</query><query name="Ex2 - Itr Gen" focus="false" active="true" mode="javascript">
+var names = [];
+//fn.collection() returns an iterator (An Iterator is an object that knows
+//how to access items from a collection one at a time,
+//while keeping track of its current position within that sequence)
+for(var doc of fn.collection('character')) {
+  var name = doc.toObject().name;
+  names.push(name);
+}
+names;
+
+/*
+//Generator function that creates a factory for iterators
+//asObjects accepts an iterator as it's parameter
+function* asObjects(iterator) {
+  for (var doc of iterator) {
+    yield doc.toObject();
+  }
+}
+
+var names = [];
+//fn.collection() returns an iterator
+for(var doc of asObjects(fn.collection('character'))) {
+  names.push(doc.name);
+}
+names;
+*/</query><query name="Ex3 - Insert" focus="false" active="true" mode="javascript">// do not forget to call declareUpdate() !!!
+declareUpdate();
+xdmp.documentInsert('/person/joe.json',
+{
+  'name': 'Joe',
+  'age': 35,
+  'handsome': true,
+  'pob': 'United States of America',
+  'description': 'Joe is a MarkLogic developer and enjoys running and traveling in his free time.'
+});</query><query name="Ex4 - Search" focus="false" active="true" mode="javascript">/*
+//uses exact matches
+cts.search(
+  cts.jsonPropertyValueQuery('name', 'Joe')
+);
+*/
+/*
+//uses stemming
+cts.search(
+  cts.jsonPropertyWordQuery('description', 'travels')
+);
+*/
+
+/*
+//example query that creates mutable object for updates
+var query = cts.jsonPropertyWordQuery('description', 'travels');
+
+var results = [];
+for (var doc of cts.search(query)) {
+  var obj = {
+    relevanceScore: cts.score(doc)
+  };
+  doc = doc.toObject();
+
+  ['name', 'age', 'description'].forEach(function(property) {
+    obj[property] = doc[property];
+  });
+  results.push(obj);
+}
+results;
+*/</query><query name="Ex5 - Exports" focus="false" active="false" mode="javascript">var maths = require("/MarkLogic/mlu-sjs-demo/math.sjs");</query><query name="Ex5 - Require (Math)" focus="false" active="true" mode="javascript">var math = require('/MarkLogic/mlu-sjs-demo/math.sjs');
+math.add(5, 8);
+
+</query><query name="Ex6 - Require (Person)" focus="false" active="true" mode="javascript">var person = require('MarkLogic/mlu-sjs-demo/person.sjs');
+var tamas = new person('Tamas', 18);
+tamas.sayHi() + ' ' + tamas.askAge() + ' ' + tamas.job();
+
+//var susan = new person('Susan', 45);
+//susan.sayHi() + ' ' + susan.askAge() + ' ' + susan.job();</query></workspace></export>

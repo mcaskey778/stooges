@@ -1,0 +1,61 @@
+{
+   "word-positions": true,
+   "fast-phrase-searches": true,
+   "triple-index": true,
+   "fast-case-sensitive-searches": true,
+   "fast-diacritic-sensitive-searches": true,
+   "fast-element-word-searches": true,
+   "fast-element-phrase-searches": true,
+   "uri-lexicon": true,
+   "collection-lexicon": true,
+
+   	"range-element-index": [
+   	 {
+   		"scalar-type": "string",
+   		"namespace-uri": null,
+   		"localname": "artist",
+   		"collation": "http://marklogic.com/collation/en/S1/AS/T00BB",
+   		"range-value-positions": false,
+   		"invalid-values": "reject"
+   	},
+   	{
+   		"scalar-type": "string",
+   		"namespace-uri": null,
+   		"localname": "genre",
+   		"collation": "http://marklogic.com/collation/en/S1/AS/T00BB",
+   		"range-value-positions": false,
+   		"invalid-values": "reject"
+   	},
+   	{
+   		"scalar-type": "string",
+   		"namespace-uri": null,
+   		"localname": "genre",
+   		"collation": "http://marklogic.com/collation/",
+   		"range-value-positions": false,
+   		"invalid-values": "reject"
+   	},
+   	{
+   		"scalar-type": "string",
+   		"namespace-uri": null,
+   		"localname": "title",
+   		"collation": "http://marklogic.com/collation/en/S1/AS/T00BB",
+   		"range-value-positions": false,
+   		"invalid-values": "reject"
+   	},
+   	{
+   		"scalar-type": "date",
+   		"namespace-uri": null,
+   		"localname": "week",
+   		"collation": "",
+   		"range-value-positions": false,
+   		"invalid-values": "reject"
+   	},
+   	{
+   		"scalar-type": "string",
+   		"namespace-uri": null,
+   		"localname": "artist",
+   		"collation": "http://marklogic.com/collation/",
+   		"range-value-positions": false,
+   		"invalid-values": "reject"
+   	}]
+}

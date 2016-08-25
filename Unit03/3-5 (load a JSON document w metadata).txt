@@ -1,0 +1,1 @@
+curl --anyauth --user admin:admin -X PUT -T ../mls-developer-node/Unit03/docs/song2.json "http://localhost:7010/v1/documents?uri=/songs/song2.json&format=json&collection=music&collection=classic rock&prop:album=Full Moon Fever&prop:misc=some additional metadata"

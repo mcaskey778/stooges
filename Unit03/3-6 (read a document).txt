@@ -1,0 +1,8 @@
+<!-- 1:  return a document from the database -->
+
+curl --anyauth --user admin:admin -X GET "http://localhost:7010/v1/documents?uri=/songs/song1.xml"
+
+
+<!-- 2:  return a document from the database with properties -->
+
+curl --anyauth --user admin:admin -X GET -H "Accept: multipart/mixed;boundary=BOUNDARY" "http://localhost:7010/v1/documents?uri=/songs/song2.json&category=content&category=properties"

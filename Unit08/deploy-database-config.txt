@@ -1,0 +1,1 @@
+curl --anyauth --user admin:admin -X PUT -d@"../mls-developer-node/Unit08/database-config.json" -i -H "Content-type: application/json" "http://localhost:8002/manage/v2/databases/top-songs-content/properties"

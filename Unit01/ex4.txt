@@ -1,0 +1,30 @@
+"use strict";
+
+var marklogic = require("marklogic");
+
+var db = marklogic.createDatabaseClient(
+  {
+    host: "localhost",
+    port: 8006,
+    authType: "digest",
+    user: "admin",
+    password: "admin"
+  }
+);
+
+var myURI = "/questions/soq10350921.json"; // hardcoded for simple example
+
+// read a document and use a callback to iterate over the results.
+// There will be only 1 document returned, but iterating will be more flexible.
+db.documents.read(myURI).result(
+  function(docs){
+    docs.forEach(function(doc){
+      console.log(doc.uri);
+      console.log(doc.content);
+      //console.log(doc.content.owner.displayName);
+    });
+  },
+  function(error){
+    console.log(JSON.stringify(error, null, 2));
+  }
+);

@@ -1,0 +1,8 @@
+<rest-api xmlns="http://marklogic.com/rest-api">
+  <name>top-songs-appserver</name>
+  <group>Default</group>
+  <database>top-songs-content</database>
+  <modules-database>top-songs-modules</modules-database>
+  <port>7010</port>
+  <forests-per-host>1</forests-per-host>
+</rest-api>

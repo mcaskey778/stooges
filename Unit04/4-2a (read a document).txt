@@ -1,0 +1,1 @@
+curl --anyauth --user rest-reader-user:training -X GET "http://localhost:7010/v1/documents?uri=/songs/song2.json"

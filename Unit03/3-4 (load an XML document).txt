@@ -1,0 +1,1 @@
+curl --anyauth --user admin:admin -X PUT -T ../mls-developer-node/Unit03/docs/song1.xml "http://localhost:7010/v1/documents?uri=/songs/song1.xml&format=xml&collection=music&collection=classic rock"

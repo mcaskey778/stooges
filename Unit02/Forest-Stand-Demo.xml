@@ -1,0 +1,23 @@
+<export><workspace name="Forest-Stand-Demo"><query name="Load / Update Documents" focus="true" active="true" content-source="as:10790618745367845582:" mode="javascript">/*
+  1 - Start by looking at the Documents forest on the file system.  Note that it is empty.
+  2 - Run the code.  Note the creation of a stand in the forest.
+  3 - Run the code again, then quickly look at the forest.  Note that new stands are appended.  Note that a merge occurs. 
+*/  
+
+declareUpdate();
+
+var pathToDocuments = 'c:/mls-developer-node/Unit02/world-leaders-source';
+var xmlDocs = xdmp.filesystemDirectory(pathToDocuments);
+
+if (xdmp.databaseName(xdmp.database()) == "Documents") {
+  xmlDocs.toArray().forEach(function(doc) {
+    xdmp.documentLoad(doc.pathname,
+    {
+    'uri': '/leader/' + doc.filename,
+    'permissions': xdmp.defaultPermissions()
+    }
+    );
+  });
+} else {
+  "Please select the Documents database as the Content Source.";
+};</query></workspace></export>

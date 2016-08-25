@@ -1,0 +1,11 @@
+{
+  "rest-api": 
+  {
+    "name": "top-songs-appserver",
+	"group": "Default",
+    "database": "top-songs-content",
+	"modules-database": "top-songs-modules",
+    "port": "7010",
+    "forests-per-host": 1
+  }
+}

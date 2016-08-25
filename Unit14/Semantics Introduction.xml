@@ -1,0 +1,95 @@
+<export><workspace name="Semantics Introduction"><query name="SPARQL 1" focus="true" active="true" mode="sparql"># Question:  Who served on the Apollo 11 crew?
+# Subject = Apollo_11
+# Object = crewMember
+# Predicate = the list of matching values
+
+PREFIX rsrc: &lt;http://dbpedia.org/resource/&gt;
+PREFIX onto: &lt;http://dbpedia.org/ontology/&gt;
+
+SELECT ?o
+WHERE { rsrc:Apollo_11 onto:crewMember ?o }</query><query name="SPARQL 2" focus="false" active="true" mode="sparql"># Write a SPARQL Query to find facts about John Lennon
+# Subject = John_Lennon
+# Predicate = unknown
+# Object = unknown</query><query name="SPARQL 3" focus="false" active="true" mode="sparql">#ANSWER TO...
+#Write a SPARQL Query to find facts about John Lennon
+
+PREFIX rsrc: &lt;http://dbpedia.org/resource/&gt;
+PREFIX onto: &lt;http://dbpedia.org/ontology/&gt;
+
+SELECT *
+WHERE { rsrc:John_Lennon ?p ?o }</query><query name="SPARQL 4" focus="false" active="true" mode="sparql"># Extend the query that finds facts about John Lennon.
+# The goal is to find people that share the same
+# birthplace as John Lennon.
+</query><query name="SPARQL 5" focus="false" active="true" mode="sparql"># Answer to...
+# Extend the query that finds facts about John Lennon.
+# The goal is to find people that share the same
+# birthplace as John Lennon.
+prefix onto: &lt;http://dbpedia.org/ontology/&gt;
+prefix db: &lt;http://dbpedia.org/resource/&gt;
+
+select ?person ?birthTown
+where { 
+  			db:John_Lennon onto:birthPlace ?birthTown .
+        ?person onto:birthPlace ?birthTown
+      }</query><query name="SPARQL 6" focus="false" active="true" mode="sparql"># DISTINCT and LIMIT example
+# The goal is to find all the different 
+# ontology types in the triple data.
+# "a" is a shortcut for "isA". So the select is 
+# returning any type from any subject and
+# using DISTINCT to filter out duplicates.
+# The results are limited to the first 500 types found.
+SELECT DISTINCT ?concept
+WHERE {
+  			?s a ?concept .
+  		}
+LIMIT 500</query><query name="SPARQL 7" focus="false" active="true" mode="sparql"># ASK returns true or false when given an expression. 
+# ASK is useful for seeing if something could return a 
+# result without actually returning the result data.
+# This example returns true if there are any subject 
+# triple nodes who died in London.
+
+prefix onto: &lt;http://dbpedia.org/ontology/&gt;
+prefix db: &lt;http://dbpedia.org/resource/&gt;
+prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt;
+
+ASK
+WHERE {
+  ?person onto:deathDate ?dateDied ;
+     onto:deathPlace db:London .
+  }</query><query name="SPARQL 8" focus="false" active="true" mode="sparql"># OPTIONAL, ORDER BY and FILTER example
+# Building on the ASK example, we know there are
+# people in the database who passed away in London.
+# Lets list them out by their name, date died and the IRI
+# of their spouse, if any.
+# Order them descending alphbetically by their name and
+# filter out any that died previous to 1900.
+PREFIX onto: &lt;http://dbpedia.org/ontology/&gt;
+PREFIX db: &lt;http://dbpedia.org/resource/&gt;
+PREFIX foaf: &lt;http://xmlns.com/foaf/0.1/&gt;
+PREFIX xs: &lt;http://www.w3.org/2001/XMLSchema#&gt;
+
+SELECT ?name ?dateDied ?spouse
+WHERE {
+  ?person onto:deathDate ?dateDied ;
+     onto:deathPlace db:London ;
+     foaf:name ?name .
+  OPTIONAL { ?person onto:spouse ?spouse }
+ 
+  FILTER (?dateDied &gt;= "1900-01-01"^^xs:date)
+    }
+ORDER BY DESC(?name)</query><query name="SPARQL 9" focus="false" active="true" mode="sparql"># CONSTRUCT example
+# Construct returns a new RDF graph containing knowledge
+# obtained from the where clause. In this example,
+# CONSTRUCT is used to create new triples containing
+# data in the database that is known to be bad. FILTER
+# is used with a regular expression to return only the
+# names that have "px" in them. The names are returned
+# in ascending order.
+PREFIX foaf: &lt;http://xmlns.com/foaf/0.1/&gt;
+CONSTRUCT { ?person foaf:name ?name}
+WHERE {
+  ?person a foaf:Person ;
+          foaf:name ?name .
+  FILTER (REGEX(?name, "px"))
+  }
+ ORDER BY ASC(?name)</query></workspace></export>

@@ -1,0 +1,15 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+  body
+    h3 Get a document by URI:
+
+    p Enter URI Here (for example: /questions/soq10350921.json):
+    form(action="/", method="post")
+      input(type="text", name="docID", id="docID")
+      input(type="submit")
+
+    if name
+      p This document was created by:
+        b #{name}
